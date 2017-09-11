@@ -330,7 +330,7 @@ autoplay = ""
 
 stream/stream = SubResource( 5 )
 stream/play = false
-stream/loop = false
+stream/loop = true
 stream/volume_db = 0.0
 stream/autoplay = false
 stream/paused = false
