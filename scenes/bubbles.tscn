@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://sprites/bubbles.png" type="Texture" id=1]
+
+[node name="bubbles" type="Particles2D"]
+
+z/z = -1
+config/amount = 16
+config/lifetime = 5.0
+config/process_mode = 1
+config/half_extents = Vector2( 2, 0 )
+config/texture = ExtResource( 1 )
+config/h_frames = 4
+params/direction = 180.0
+params/spread = 30.0
+params/linear_velocity = 15.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 0.2
+params/final_size = 0.2
+params/hue_variation = 0.0
+params/anim_speed_scale = 0.0
+params/anim_initial_pos = 0.0
+randomness/direction = 1.0
+randomness/spread = 1.0
+randomness/linear_velocity = 0.5
+randomness/initial_angle = 1.0
+randomness/initial_size = 1.0
+randomness/final_size = 1.0
+
+

@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://resources/bg_wall_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scripts/walls.gd" type="Script" id=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Button
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	pass
+
+
+func _on_Button_pressed():
+	get_node( \"../../TileMap\" )._update()
+	pass # replace with function body
+"
+
+[node name="test_tilemap" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray(  )
+script/script = ExtResource( 2 )
+numRoomTries = 10
+extraConnectorChance = 20
+MapSize = Vector2( 120, 80 )
+RoomSizeRange = Vector2( 5, 15 )
+CorridorDimensions = Vector2( 2, 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 5, 5 )
+limit/left = 0
+limit/top = 0
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 12.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "test"
+flat = false
+script/script = SubResource( 1 )
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_Button_pressed"]
+
+

@@ -1,0 +1,161 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://scripts/intro.gd" type="Script" id=1]
+[ext_resource path="res://sprites/logo.png" type="Texture" id=2]
+[ext_resource path="res://fonts/godottinyfont.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://sprites/player.png" type="Texture" id=4]
+[ext_resource path="res://scenes/bubbles.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/flashinglabel.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "cycle"
+length = 0.6
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 16, 17, 18 ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "move"
+length = 2.1
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1, 2 ),
+"transitions": FloatArray( 1, 1, 0 ),
+"update": 0,
+"values": [ Vector2( -5, 158 ), Vector2( 386, 158 ), Vector2( -49, 158 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:transform/scale")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ) ]
+}
+
+[node name="intro" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="logo" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 5.0
+margin/top = 175.0
+margin/right = 136.0
+margin/bottom = 223.0
+custom_fonts/font = ExtResource( 3 )
+text = "controls
+Arrow Keys or WASD
+J or SPACE to fire"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label1" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 287.0
+margin/top = 182.0
+margin/right = 418.0
+margin/bottom = 230.0
+custom_fonts/font = ExtResource( 3 )
+text = "Made by securas
+For the Dragon Jam"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="squid" type="Sprite" parent="."]
+
+transform/pos = Vector2( -79, 158 )
+transform/scale = Vector2( -1, 1 )
+texture = ExtResource( 4 )
+vframes = 4
+hframes = 8
+frame = 14
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="squid"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/cycle = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "cycle"
+
+[node name="AnimationPlayer 2" type="AnimationPlayer" parent="squid"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/move = SubResource( 2 )
+playback/active = true
+playback/speed = 0.2
+blend_times = [  ]
+autoplay = "move"
+
+[node name="bubbles" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 88, 199 )
+
+[node name="bubbles1" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 129, 199 )
+
+[node name="bubbles2" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 174, 199 )
+
+[node name="bubbles3" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 216, 199 )
+
+[node name="bubbles4" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 260, 199 )
+
+[node name="flashinglabel" parent="." instance=ExtResource( 6 )]
+
+margin/left = 139.0
+margin/top = 186.0
+margin/right = 221.0
+margin/bottom = 194.0
+
+
