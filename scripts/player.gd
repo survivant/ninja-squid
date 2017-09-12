@@ -113,31 +113,31 @@ func _fixed_process( delta ):
 var anim_prv = ""
 func _state_ground( delta ):
 	var user_input = true
-	user_input = _end_fire( delta )
-	
+	#user_input = _end_fire( delta )
+	var allow_new_anim = _end_fire( delta )
 	# player input
 	if user_input:
 		if btn_left.check() == 2:
 			vel.x = lerp( vel.x, -MAX_GROUND_VEL, delta * GROUND_ACCEL )
 			if vel.x < 0:
 				direction_nxt = -1
-			anim_nxt = "run"
+			if allow_new_anim: anim_nxt = "run"
 		elif btn_right.check() == 2:
 			vel.x = lerp( vel.x, MAX_GROUND_VEL, delta * GROUND_ACCEL )
 			if vel.x > 0:
 				direction_nxt = 1
-			anim_nxt = "run"
+			if allow_new_anim: anim_nxt = "run"
 		else:
 			if abs( vel.x ) > 1:
 				vel.x = lerp( vel.x, 0, delta * GROUND_DECCEL )
 			else:
 				vel.x = 0
-				anim_nxt = "idle"
+				if allow_new_anim: anim_nxt = "idle"
 		if btn_up.check() == 1:
 			# jump
 			_is_jump = true
 			vel.y -= JUMP_VEL
-			samples.play( "player_jump" )
+			if allow_new_anim: samples.play( "player_jump" )
 	else:
 		vel.x = lerp( vel.x, 0, delta * GROUND_DECCEL )
 	if btn_fire.check() == 1:
@@ -160,8 +160,10 @@ func _state_ground( delta ):
 
 func _state_air( delta ):
 	var user_input = true
+	var allow_new_anim = true
 	if anim_cur == "fire" and anim.is_playing():
-		user_input = false
+		#user_input = false
+		allow_new_anim = false
 	elif anim_cur == "fire":
 		anim_nxt = anim_prv
 	# player input
@@ -186,13 +188,13 @@ func _state_air( delta ):
 				vel.y -= JUMP_VEL
 			else:
 				vel.y -= AIR_JUMP_VEL
-			anim_nxt = "jump up"
+			if allow_new_anim: anim_nxt = "jump up"
 			restart_anim = true
 			samples.play( "player_jump" )
 		elif btn_down.check() == 2:
 			vel.y = lerp( vel.y, MAX_AIR_VEL, delta * AIR_ACCEL )
 		if vel.y > 0:
-			anim_nxt = "idle"
+			if allow_new_anim: anim_nxt = "idle"
 			_fall_time += delta
 	
 	if btn_fire.check() == 1:
