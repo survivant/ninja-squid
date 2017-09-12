@@ -78,13 +78,16 @@ func _place_player():
 	
 	
 	# decide where to place the key and the door
-	var possible_rooms = [ maxroom_x, minroom_y, maxroom_y ]
-	var poskey = rand_rangei( 0, 2 )
-	print( "poskey: ", poskey )
+	var possible_rooms = [] #[ maxroom_x, minroom_y, maxroom_y ]
+	for w in wallgen._rooms:
+		if w != minroom_x:
+			possible_rooms.append( w )
+	var poskey = rand_rangei( 0, possible_rooms.size() - 1 )
+	#print( "poskey: ", poskey )
 	var keyroom = possible_rooms[ poskey ]
 	possible_rooms.remove( poskey )
 	var posdoor = rand_rangei( 0, 1 )
-	print( "posdoor: ", posdoor )
+	#print( "posdoor: ", posdoor )
 	var doorroom = possible_rooms[ posdoor ]
 	
 	var keypos = ( keyroom.pos + keyroom.size / 2 ) * get_cell_size()
