@@ -19,5 +19,6 @@ func _on_key_area_enter( area ):
 		iscaught = true
 		global.has_key = true
 		get_node( "AnimationPlayer" ).play( "caught" )
+		global.score += 500
 		yield( get_node( "AnimationPlayer" ), "finished" )
 		queue_free()

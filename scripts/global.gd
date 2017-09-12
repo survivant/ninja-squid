@@ -52,9 +52,12 @@ func _update_coins( value ):
 	coinsbar.set_text( "X %d" % [ coins ] )
 	#print( "coins: ", coins )
 
+var scorebar = null
 func _update_score( value ):
 	score = value
-	#print( "score: ", score )
+	if scorebar == null:
+		scorebar = get_tree().get_nodes_in_group( "scorebar" )[0]
+	scorebar.set_text( "SCORE %d" % [ score ] )
 
 
 var keybar = null

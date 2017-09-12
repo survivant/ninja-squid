@@ -233,6 +233,7 @@ __meta__ = {
 
 [node name="keybar" type="Node2D" parent="hud_layer/hud"]
 
+editor/display_folded = true
 transform/pos = Vector2( 164, 2 )
 
 [node name="Sprite 2" type="Sprite" parent="hud_layer/hud/keybar" groups=[
@@ -256,6 +257,32 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = "cycle"
+
+[node name="scorebar" type="Node2D" parent="hud_layer/hud"]
+
+transform/pos = Vector2( 306, 11 )
+
+[node name="Label" type="Label" parent="hud_layer/hud/scorebar" groups=[
+"scorebar",
+]]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 97.0
+margin/bottom = 14.0
+custom_fonts/font = ExtResource( 4 )
+text = "score 100000"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="camera" type="Camera2D" parent="."]
 

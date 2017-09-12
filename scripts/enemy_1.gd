@@ -218,9 +218,11 @@ func die():
 		set_fixed_process( false )
 		anim.play( "die" )
 		samples.play( "alien_explosion" )
+		global.score += 1000
 		yield( anim, "finished" )
 		queue_free()
 	else:
+		global.score += 200
 		samples.play( "alien_hit" )
 	state_nxt = STATES.CHASE
 	wander_state = 0

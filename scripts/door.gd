@@ -30,6 +30,8 @@ func _on_door_area_enter( area ):
 	global.player.set_global_pos( get_global_pos() )
 	get_node( "AnimationPlayer" ).play( "caught" )
 	get_node( "SamplePlayer" ).play( "door" )
+	global.score += 5000
+	
 	yield( get_node( "AnimationPlayer" ), "finished" )
 	global.finish_level()
 	queue_free()
