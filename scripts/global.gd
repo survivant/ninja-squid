@@ -34,6 +34,9 @@ func _process( delta ):
 	# hit Esc to quit
 	if Input.is_key_pressed( KEY_ESCAPE ):
 		get_tree().quit()
+	if Input.is_action_pressed( "btn_quit" ):
+		if main != null:
+			main.quit_game()
 	if player != null:
 		var wr = weakref( player)
 		if (!wr.get_ref()):

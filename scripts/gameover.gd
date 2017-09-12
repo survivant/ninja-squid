@@ -11,6 +11,10 @@ func _ready():
 		global.camera.align()
 	set_process( true )
 
+var is_ending = false
 func _process(delta):
+	if is_ending: return
 	if Input.is_action_pressed( "btn_fire" ):
+		is_ending = true
 		global.main.change_map( "res://scenes/intro.tscn" )
+		

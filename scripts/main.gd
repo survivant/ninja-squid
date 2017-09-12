@@ -96,5 +96,6 @@ func finish_game():
 	#change_map( "res://scenes/intro.tscn" )
 	pass
 
-
+func quit_game():
+	change_map( "res://scenes/intro.tscn" )
 	

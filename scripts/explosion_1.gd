@@ -5,6 +5,9 @@ extends Sprite
 # var b = "textvar"
 
 func _ready():
+	get_node( "AnimationPlayer" ).connect( "finished", self, "finished" )
 	get_node( "SamplePlayer" ).play( "bullet_explosion" )
-	yield( get_node( "AnimationPlayer" ), "finished" )
+	
+
+func finished():
 	queue_free()
