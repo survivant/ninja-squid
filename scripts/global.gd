@@ -47,6 +47,8 @@ func _update_coins( value ):
 	if coins >= 100:
 		_update_lives( lives + 1 )
 		coins = 0
+		if main != null:
+			main.get_node( "hud_layer/hud/livesbar/AnimationPlayer" ).play( "cycle" )
 	if coinsbar == null:
 		coinsbar = get_tree().get_nodes_in_group( "coinsbar" )[0]
 	coinsbar.set_text( "X %d" % [ coins ] )
