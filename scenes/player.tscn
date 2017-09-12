@@ -293,7 +293,7 @@ __meta__ = {
 
 config/polyphony = 5
 config/samples = SubResource( 10 )
-default/volume_db = -10.0
+default/volume_db = -13.0
 default/pitch_scale = 1.0
 default/pan = 0.0
 default/depth = 0.0
